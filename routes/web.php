@@ -6,29 +6,18 @@ use App\Models\Skill;
 
 use App\Models\Portfolio;
 
+use App\Http\Controllers\testcontroller;
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route:: get ('/test', function(){
-    return 123;
-});
+Route:: get ('/test/{id}',[testcontroller::class, 'show']);
 
-Route::get('/skills/{category}', function($category){
-    $title = "Навыки в категории $category";
-    $skills = Skill::where('category', $category)->get();
-    return view('skills')
-        ->with('title',$title)
-        ->with('skills',$skills);
-});
-//Маршрут навыков
-Route:: get ('/skills', function(){
-    $title = 'Навыки';
-    $skills = Skill::all();
-    return view('skills')
-        ->with('title', $title)
-        ->with('skills',$skills);
-});
+Route::get('/skills', [testcontroller::class, 'skills']);
+
+Route::get('/skills/{category}', [testcontroller::class, 'skillsCategory']);
+
+Route::get('/skills-json', [testcontroller::class, 'getAllSkills'])->middleware('auth');
 
 Route:: get ('/portfolio', function(){
     $title = 'Портфолио Terricon';
