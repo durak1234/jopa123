@@ -21,7 +21,7 @@ Route::get('/skills/{category}', function($category){
         ->with('title',$title)
         ->with('skills',$skills);
 });
-
+//Маршрут навыков
 Route:: get ('/skills', function(){
     $title = 'Навыки';
     $skills = Skill::all();
