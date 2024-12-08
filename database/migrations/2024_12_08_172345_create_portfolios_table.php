@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('portfolios', function (Blueprint $table) {
             $table->id();
-
             $table->string('name');
-            $table->integer('price');
+            $table->integer('lvl');
             $table->string('val');
-
             $table->timestamps();
         });
     }

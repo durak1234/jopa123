@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Портфолио</title>
+        <title>Laravel</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -60,15 +60,19 @@
 
                     <main class="mt-6">
                         <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
-                        <h1>{{ $title }}</h1>
-                        </div>
-                        <div>
-                            @foreach($portgolios as $portfolio)
-                            <a href =''>
-                                {{ $portfolio->name }} # {{ $portfolio->lvl}} # {{ $portfolio->val }}
-                            </a>
+                            
+                            <h1>{{ $title }}</h1>
+
+                            @foreach($jobs as $job)
+                            <div>
+                                <h2>{{ $job['name'] }}</h2>
+                                <h3>{{ $job['price'] }}</h3>
+                                <h4>{{ $job['val'] }}</h4>
+                            </div>
                             @endforeach
-                        </div> 
+
+                            <p></p>
+
                     </main>
 
                     <footer class="py-16 text-center text-sm text-black dark:text-white/70">
