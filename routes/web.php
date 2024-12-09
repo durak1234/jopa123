@@ -10,6 +10,8 @@ use App\Http\Controllers\SkillController;
 
 use App\Http\Controllers\PortfolioController;
 
+use App\Http\Controllers\AdminController;
+
 // test
 Route::get('/', function () { return view('welcome'); });
 
@@ -45,6 +47,15 @@ Route::post('/create-portfolio',[PortfolioController::class,'createPortfolio'])
 Route::get('/create-portfolio/{id}',[PortfolioController::class,'portfolioDelete'])
 ->middleware('auth')
 ->name('portfolioDelete');
+
+Route::middleware([
+    'auth',
+    'roleChecker:admin'
+])->prefix('admin')->group(function(){
+    Route::get('/users', [AdminController::class,'renderUsers'])->name('renderUsers');
+});
+
+Route::get('/delete-user/{id}',[AdminController::class,'deleteUser'])->name('deleteUser');
 
 Route::get('/portfolio', function () {
     $title = 'Портфолио Terricon';
