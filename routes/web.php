@@ -15,6 +15,10 @@ use App\Http\Controllers\AdminController;
 // test
 Route::get('/', function () { return view('welcome'); });
 
+Route::get('/pages/{name}',function ($name){
+    return view("pages.$name");
+})->name('pages');
+
 Route::get('/test/{id}', [TestController::class, 'show']);
 
 Route::get('/skills/{category}', [TestController::class, 'skillsCategory']);
@@ -55,7 +59,22 @@ Route::middleware([
     Route::get('/users', [AdminController::class,'renderUsers'])->name('renderUsers');
 });
 
-Route::get('/delete-user/{id}',[AdminController::class,'deleteUser'])->name('deleteUser');
+Route::get('/delete-user/{id}',[AdminController::class,'deleteUser'])
+->name('deleteUser');
+
+Route::get('/users/{id}',[AdminController::class,'renderEditUser'])
+->name('renderEditUser');
+
+
+Route::post('/users/{id}',[AdminController::class,'editUser'])
+->name('editUser');
+
+Route::post('/add-user',[AdminController::class,'addUser'])
+->name('addUser');
+
+Route::get('/add-user',[AdminController::class,'renderAddUser'])
+->name('renderAddUser');
+
 
 Route::get('/portfolio', function () {
     $title = 'Портфолио Terricon';
